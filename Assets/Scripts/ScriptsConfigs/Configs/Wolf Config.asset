@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbfc0eccba24304b2affd498efdb6c8, type: 3}
+  m_Name: Wolf Config
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 5
+  <MaxHealth>k__BackingField: 1
+  <Damage>k__BackingField: 9.2
+  <Prefab>k__BackingField: {fileID: 4589198020121585746, guid: d068ce97f5dea3e45834d4fbab696e3f,
+    type: 3}

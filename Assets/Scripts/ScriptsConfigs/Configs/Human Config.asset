@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e5bd6f1aa341169c0d537c75829e1d, type: 3}
+  m_Name: Human Config
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 3
+  <MaxHealth>k__BackingField: 1
+  <Damage>k__BackingField: 14.7
+  <Prefab>k__BackingField: {fileID: 7405949472005657456, guid: 5c454220def3c36418a7e23f9d9b9637,
+    type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc3416d334d4c3f96b125136af024be, type: 3}
+  m_Name: Ork Config
+  m_EditorClassIdentifier: 
+  <Speed>k__BackingField: 1.34
+  <MaxHealth>k__BackingField: 1
+  <Damage>k__BackingField: 13.9
+  <Prefab>k__BackingField: {fileID: 1933736558572980432, guid: feb8f0af81539b447bcd70060dedae16,
+    type: 3}
