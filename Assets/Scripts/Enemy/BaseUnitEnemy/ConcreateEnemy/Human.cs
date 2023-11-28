@@ -2,6 +2,7 @@
 using Configs;
 using Enemy.Interface;
 using PlayerScripts;
+using UIScripts;
 using UnityEngine;
 
 namespace Enemy
@@ -10,12 +11,14 @@ namespace Enemy
     {
         public IHealthStats Health { get; private set; }
         public Action Died { get; private set; }
+        
+        [SerializeField] private UiBarArmor imageClampArmor;
 
         public override void Initialize(IConfigable config, ITransformPlayer transformPlayer)
         {
             Config = config;
             TransformPlayer = transformPlayer;
-            Health = new Health(Config.MaxHealth, this);
+            Health =  new Armor(new Health(Config.MaxHealth, this, uiBarHealth), Config.Armor, imageClampArmor);
 
             Died += DiedUnit;
         }
@@ -32,7 +35,6 @@ namespace Enemy
         {
             base.Update();
             Move();
-            Debug.Log(Health.CurrentHealth);
         }
         
         protected override void AddSubscriptionsOnEvent()

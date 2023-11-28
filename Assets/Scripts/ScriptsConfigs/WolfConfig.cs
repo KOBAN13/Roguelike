@@ -11,6 +11,8 @@ namespace Configs
         [field: SerializeField] [field: Range(1, 23)] public float Damage { get; private set; }
         [field: SerializeField] public GameObject Prefab { get; private set; }
         
+        public float Armor { get; }
+        
         public void Accept(IVisitor visitor) => visitor.Visit(this);
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoarConfig
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 3.01
-  <MaxHealth>k__BackingField: 1
+  <MaxHealth>k__BackingField: 100
   <Damage>k__BackingField: 7.8
   <Prefab>k__BackingField: {fileID: 333107983789980158, guid: 5dfe8ae37c876344f9102256078f6011,
     type: 3}

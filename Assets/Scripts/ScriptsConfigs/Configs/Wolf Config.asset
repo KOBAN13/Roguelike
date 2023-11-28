@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wolf Config
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 5
-  <MaxHealth>k__BackingField: 1
+  <MaxHealth>k__BackingField: 70
   <Damage>k__BackingField: 9.2
   <Prefab>k__BackingField: {fileID: 4589198020121585746, guid: d068ce97f5dea3e45834d4fbab696e3f,
     type: 3}

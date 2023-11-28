@@ -2,6 +2,7 @@
 using Configs;
 using Enemy.Interface;
 using PlayerScripts;
+using UIScripts;
 using UnityEngine;
 
 namespace Enemy
@@ -13,16 +14,16 @@ namespace Enemy
 
         protected ITransformPlayer TransformPlayer;
 
+        [SerializeField] protected UiBarHealth uiBarHealth;
+
         public void OnEnable() => AddSubscriptionsOnEvent();
 
         public void OnDisable() => RemoveSubscriptionsOnEvent();
 
-        protected virtual void AddSubscriptionsOnEvent()
-        { 
-        
-        }
+        protected virtual void AddSubscriptionsOnEvent() {}
 
         protected virtual void RemoveSubscriptionsOnEvent() {}
+        
         public void MoveToSpawnPoint(Vector3 position) => transform.position = position;
 
         public abstract void Initialize(IConfigable config, ITransformPlayer transformPlayer);

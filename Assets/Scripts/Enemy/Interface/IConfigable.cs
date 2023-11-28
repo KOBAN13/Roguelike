@@ -8,6 +8,7 @@ namespace Configs
         float Speed { get; } 
         float MaxHealth { get; } 
         float Damage { get; }
+        float Armor { get; }
         GameObject Prefab { get; }
         
         void Accept(IVisitor visitor);

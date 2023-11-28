@@ -15,7 +15,7 @@ namespace Enemy
         {
             Config = config;
             TransformPlayer = transformPlayer;
-            Health = new Health(Config.MaxHealth, this);
+            Health = new Health(Config.MaxHealth, this, uiBarHealth);
 
             Died += DiedUnit;
         }
@@ -32,7 +32,6 @@ namespace Enemy
         {
             base.Update();
             Move();
-            Debug.Log(Health.CurrentHealth);
         }
 
         protected override void AddSubscriptionsOnEvent()

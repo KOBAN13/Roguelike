@@ -1,5 +1,6 @@
 ﻿using System;
 using Enemy.Interface;
+using UIScripts;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -7,15 +8,18 @@ namespace PlayerScripts
     public class Armor : IHealthStats
     {
         public float MaxHealth { get; }
-        public float CurrentHealth { get; private set; }
+        public float CurrentHealth { get; }
 
         private IHealthStats _healthStats;
+        private IImageClamp _imageClamp;
         private float _armor;
-
-        public Armor(IHealthStats stats, float armor)
+        private float _maxArmor;
+        public Armor(IHealthStats stats, float armor, IImageClamp imageClamp)
         {
             _healthStats = stats;
             _armor = armor;
+            _imageClamp = imageClamp;
+            _maxArmor = _armor;
         }
         
         public void SetDamage(float value)
@@ -35,6 +39,8 @@ namespace PlayerScripts
                 _armor -= value;
                 _healthStats.SetDamage(0f);
             }
+            
+            _imageClamp.SetFillImage.Invoke(_armor, _maxArmor);
         }
 
         public void AddHealth(float value) => _healthStats.AddHealth(value);
