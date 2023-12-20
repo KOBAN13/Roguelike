@@ -2,8 +2,10 @@
 
 namespace Enemy.Interface
 {
-    public interface IDied
+    public interface IDied<T>
     {
-        Action Died { get; }
+        Action<T> Died { get; set; }
+
+        public void OnDiedUnit(T player);
     }
 }

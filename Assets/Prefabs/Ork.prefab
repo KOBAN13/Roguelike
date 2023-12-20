@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 3675617010598701701}
   - component: {fileID: 3914415103181371739}
   - component: {fileID: 2341608482670709834}
-  - component: {fileID: 789299274843150708}
+  - component: {fileID: 367217993922185565}
   m_Layer: 7
   m_Name: Ork
   m_TagString: Untagged
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiBarHealth: {fileID: 8252392765929845839}
   imageClampArmor: {fileID: 4800062407882714177}
---- !u!54 &789299274843150708
+--- !u!54 &367217993922185565
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using AbstractFactory.SecondFactory;
+using Enemy.Interface;
 using PlayerScripts;
+using Spawner;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +13,22 @@ public class InstallScene : MonoInstaller
     public override void InstallBindings()
     {
         BindPlayer();
+        BindCounter();
         BindArgumentsForEnemy();
+        BindListUnits();
+    }
+
+    private void BindListUnits()
+    {
+        Container.Bind<IListUnit>().FromComponentInHierarchy().AsSingle();
+        Container.BindInterfacesAndSelfTo<CounterOperations>().AsSingle().NonLazy();
+        Container.Bind<TypeUnit>().AsSingle().NonLazy();
+    }
+    
+    private void BindCounter()
+    {
+        Container.Bind<ICounterMax>().FromComponentInHierarchy().AsSingle();
+        Container.BindInterfacesAndSelfTo<Counter>().AsSingle().NonLazy();
     }
 
     private void BindPlayer()

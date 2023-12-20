@@ -5,6 +5,6 @@ namespace AbstractFactory.SecondFactory
 {
     public abstract class AbstractFactoryEnemy
     {
-        public abstract UnitEnemy CreateEnemy(EnemyFactory enemyFactory, IConfigable configEnemy);
+        public abstract UnitEnemy CreateEnemy(IConfigable configEnemy);
     }
 }

@@ -9,8 +9,8 @@ namespace Enemy
 {
     public abstract class UnitEnemy : MonoBehaviour
     {
-        public IConfigable Config { get; protected set; }
         protected Func<float> ApplyDamage { get; set; }
+        protected IConfigable Config;
 
         protected ITransformPlayer TransformPlayer;
 
@@ -26,7 +26,7 @@ namespace Enemy
         
         public void MoveToSpawnPoint(Vector3 position) => transform.position = position;
 
-        public abstract void Initialize(IConfigable config, ITransformPlayer transformPlayer);
+        public abstract void Initialize(IConfigable config, ITransformPlayer transformPlayer, IDied<UnitEnemy> onUnitDie);
 
         public virtual void Update()
         {
@@ -41,7 +41,5 @@ namespace Enemy
                 player.Health.SetDamage(ApplyDamage.Invoke());
             }
         }
-        
-        protected virtual void DiedUnit() => Destroy(gameObject);
     }
 }

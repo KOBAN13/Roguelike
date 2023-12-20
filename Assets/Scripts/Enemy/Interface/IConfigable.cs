@@ -1,5 +1,5 @@
-﻿using Enemy.Interface;
-using UnityEngine;
+﻿using Enemy;
+using Enemy.Interface;
 
 namespace Configs
 {
@@ -9,8 +9,6 @@ namespace Configs
         float MaxHealth { get; } 
         float Damage { get; }
         float Armor { get; }
-        GameObject Prefab { get; }
-        
-        void Accept(IVisitor visitor);
+        IPrefab Prefab { get; }
     }
 }

@@ -5,18 +5,20 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class Health : IHealthStats
+    public class Health<T> : IHealthStats
     {
-        private IDied _unitDie;
+        private IDied<T> _unitDie;
         private IImageClamp _imageClamp;
+        private T objectEventDie;
         public float MaxHealth { get; }
         public float CurrentHealth { get; private set; }
 
-        public Health(float maxHealth, IDied unitDie, IImageClamp imageClamp)
+        public Health(float maxHealth, IDied<T> unitDie, IImageClamp imageClamp, T objectHealth)
         {
             MaxHealth = CurrentHealth = maxHealth;
             _unitDie = unitDie;
             _imageClamp = imageClamp;
+            objectEventDie = objectHealth;
         }
 
         public void SetDamage(float value)
@@ -27,7 +29,7 @@ namespace PlayerScripts
             
             _imageClamp.SetFillImage.Invoke(CurrentHealth, MaxHealth);
             
-            if(CurrentHealth == 0) _unitDie.Died.Invoke();
+            if(CurrentHealth == 0) _unitDie.Died.Invoke(objectEventDie);
         }
 
         public void AddHealth(float value)

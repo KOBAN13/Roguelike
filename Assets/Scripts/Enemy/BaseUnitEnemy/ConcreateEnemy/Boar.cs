@@ -3,24 +3,34 @@ using Configs;
 using Enemy.Interface;
 using PlayerScripts;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Enemy
 {
-    public class Boar : UnitEnemy, IDamagable, IMovable, IDied
+    public class Boar : UnitEnemy, IDamagable, IMovable, IDied<Boar>, IPrefab
     {
         public IHealthStats Health { get; private set; }
-        public Action Died { get; private set; }
+        public Action<Boar> Died { get; set; }
+        public Object Prefab { get; private set; }
+        private IDied<UnitEnemy> _unitDieSignal;
 
-        public override void Initialize(IConfigable config, ITransformPlayer transformPlayer)
+        public override void Initialize(IConfigable config, ITransformPlayer transformPlayer, IDied<UnitEnemy> onUnitDie)
         {
             Config = config;
             TransformPlayer = transformPlayer;
-            Health = new Health(Config.MaxHealth, this, uiBarHealth);
-
-            Died += DiedUnit;
+            Health = new Health<Boar>(Config.MaxHealth, this, uiBarHealth, this);
+            
+            Died += OnDiedUnit;
+            _unitDieSignal = onUnitDie;
         }
 
         public float DealDamage() => Config.Damage;
+        
+        public IPrefab GetPrefab()
+        {
+            Prefab = this;
+            return (IPrefab)Prefab;
+        }
 
         public override void Move()
         {
@@ -34,6 +44,14 @@ namespace Enemy
             Move();
         }
 
+        public void OnDiedUnit(Boar boar)
+        {
+            _unitDieSignal.Died += _unitDieSignal.OnDiedUnit;
+            _unitDieSignal.Died.Invoke(boar);
+            boar.gameObject.SetActive(false);
+            _unitDieSignal.Died -= _unitDieSignal.OnDiedUnit;
+        }
+
         protected override void AddSubscriptionsOnEvent()
         {
             base.AddSubscriptionsOnEvent();
@@ -44,7 +62,7 @@ namespace Enemy
         {
             base.RemoveSubscriptionsOnEvent();
             ApplyDamage -= DealDamage;
-            Died -= DiedUnit;
+            Died -= OnDiedUnit;
         }
     }
 }

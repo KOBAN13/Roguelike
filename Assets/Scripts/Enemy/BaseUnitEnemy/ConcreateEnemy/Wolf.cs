@@ -2,23 +2,32 @@
 using Configs;
 using Enemy.Interface;
 using PlayerScripts;
-using UIScripts;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Enemy
 {
-    public class Wolf : UnitEnemy, IDamagable, IMovable, IDied
+    public class Wolf : UnitEnemy, IDamagable, IMovable, IDied<Wolf>, IPrefab
     {
         public IHealthStats Health { get; private set; }
-        public Action Died { get; private set; }
+        public Action<Wolf> Died { get; set; }
+        public Object Prefab { get; private set; }
+        private IDied<UnitEnemy> _unitDieSignal;
 
-        public override void Initialize(IConfigable config, ITransformPlayer transformPlayer)
+        public override void Initialize(IConfigable config, ITransformPlayer transformPlayer, IDied<UnitEnemy> onUnitDie)
         {
             Config = config;
             TransformPlayer = transformPlayer;
-            Health = new Health(Config.MaxHealth, this, uiBarHealth);
+            Health = new Health<Wolf>(Config.MaxHealth, this, uiBarHealth, this);
 
-            Died += DiedUnit;
+            Died += OnDiedUnit;
+            _unitDieSignal = onUnitDie;
+        }
+        
+        public IPrefab GetPrefab()
+        {
+            Prefab = this;
+            return (IPrefab)Prefab;
         }
 
         public float DealDamage() => Config.Damage;
@@ -34,7 +43,15 @@ namespace Enemy
             base.Update();
             Move();
         }
-        
+
+        public void OnDiedUnit(Wolf wolf)
+        {
+            _unitDieSignal.Died += _unitDieSignal.OnDiedUnit;
+            _unitDieSignal.Died.Invoke(wolf);
+            wolf.gameObject.SetActive(false);
+            _unitDieSignal.Died -= _unitDieSignal.OnDiedUnit;
+        }
+
         protected override void AddSubscriptionsOnEvent()
         {
             base.AddSubscriptionsOnEvent();
@@ -45,7 +62,7 @@ namespace Enemy
         {
             base.RemoveSubscriptionsOnEvent();
             ApplyDamage -= DealDamage;
-            Died -= DiedUnit;
+            Died -= OnDiedUnit;
         }
     }
 }

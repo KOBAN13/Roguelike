@@ -8,43 +8,38 @@ using Zenject;
 
 namespace PlayerScripts
 {
-    public class Player : MonoBehaviour, ITransformPlayer, IDamagable, IDied 
+    public class Player : MonoBehaviour, ITransformPlayer, IDamagable, IDied<Player> 
     {
         public IHealthStats Health { get; private set; }
         public Func<float> ApplyDamage { get; private set; }
-        public Action Died { get; private set; }
-        
+        public Action<Player> Died { get; set; }
+
         public Transform PlayerTransform => transform;
         [SerializeField] private PlayerConfig config;
         [SerializeField] private UiBarHealth imageClampHealth;
         [SerializeField] private UiBarArmor imageClampArmor;
 
-        public void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.F))
-                Health.SetDamage(10f);
-        }
-
-
         [Inject]
         public void Construct()
         {
-            Health = new Armor(new Health(config.MaxHealth, this, imageClampHealth), config.Armor, imageClampArmor);
+            Health = new Armor(new Health<Player>(config.MaxHealth, this, imageClampHealth, this), config.Armor, imageClampArmor);
         }
 
         public void OnEnable()
         {
             ApplyDamage += DealDamage;
-            Died += PlayerDied;
+            Died += OnDiedUnit;
         }
 
         public void OnDisable()
         {
             ApplyDamage -= DealDamage;
-            Died -= PlayerDied;
+            Died -= OnDiedUnit;
         }
 
         public float DealDamage() => config.Damage;
+
+        public void OnDiedUnit(Player player) => player.gameObject.SetActive(false);
 
         public void OnCollisionEnter(Collision enemyCollider)
         {
@@ -53,7 +48,5 @@ namespace PlayerScripts
                enemy.Health.SetDamage(ApplyDamage.Invoke());
             }
         }
-
-        private void PlayerDied() => gameObject.SetActive(false);
     }
 }

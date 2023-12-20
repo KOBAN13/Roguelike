@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7767080290188356562}
   - component: {fileID: 7809603884822804625}
   - component: {fileID: 1521385356160872801}
-  - component: {fileID: 8699259355874393945}
+  - component: {fileID: 2201371356983423439}
   m_Layer: 7
   m_Name: Boar
   m_TagString: Untagged
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBarHealth: {fileID: 132744381246082624}
---- !u!54 &8699259355874393945
+--- !u!54 &2201371356983423439
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

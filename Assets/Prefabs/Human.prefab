@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 1141342788104019639}
   - component: {fileID: 7000796743340830453}
   - component: {fileID: 7966003894906029142}
-  - component: {fileID: 8701242643894127880}
+  - component: {fileID: 3785437053544973070}
   m_Layer: 7
   m_Name: Human
   m_TagString: Untagged
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiBarHealth: {fileID: 4207608524895534371}
   imageClampArmor: {fileID: 313296623955115478}
---- !u!54 &8701242643894127880
+--- !u!54 &3785437053544973070
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

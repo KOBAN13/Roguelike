@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 2478552704456308805}
   - component: {fileID: 3787037157954780460}
   - component: {fileID: 668312564646027841}
-  - component: {fileID: -8017322511507802706}
+  - component: {fileID: 6618716893098855289}
   m_Layer: 7
   m_Name: Wolf
   m_TagString: Untagged
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBarHealth: {fileID: 4051062003369066180}
---- !u!54 &-8017322511507802706
+--- !u!54 &6618716893098855289
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
